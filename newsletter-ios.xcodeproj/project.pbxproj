@@ -10,6 +10,9 @@
 		3A26A2B8478182B684D1537E /* Pods_newsletter_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE912CA144EA4C39E0A95CD /* Pods_newsletter_ios.framework */; };
 		A8086E30BCC9113C5D2D8285 /* Pods_newsletter_ios_newsletter_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E22DACAAACCB2394D5361E /* Pods_newsletter_ios_newsletter_iosUITests.framework */; };
 		D72695552866D3A600D64622 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695542866D3A600D64622 /* R.generated.swift */; };
+		D726955A2866D59D00D64622 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695572866D59D00D64622 /* APIError.swift */; };
+		D726955B2866D59D00D64622 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695582866D59D00D64622 /* HttpClient.swift */; };
+		D726955C2866D59D00D64622 /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695592866D59D00D64622 /* APISessionManager.swift */; };
 		D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157D2866C0C3005D5527 /* AppDelegate.swift */; };
 		D7F715802866C0C3005D5527 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */; };
 		D7F715822866C0C3005D5527 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F715812866C0C3005D5527 /* ViewController.swift */; };
@@ -50,6 +53,9 @@
 		AC24641847D76D084FF3B67D /* Pods-newsletter-ios-newsletter-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsletter-ios-newsletter-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-newsletter-ios-newsletter-iosUITests/Pods-newsletter-ios-newsletter-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0546554E1B61BE91EE3FC2E /* Pods-newsletter-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newsletter-ios.release.xcconfig"; path = "Target Support Files/Pods-newsletter-ios/Pods-newsletter-ios.release.xcconfig"; sourceTree = "<group>"; };
 		D72695542866D3A600D64622 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		D72695572866D59D00D64622 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		D72695582866D59D00D64622 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		D72695592866D59D00D64622 /* APISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
 		D7F7157A2866C0C3005D5527 /* newsletter-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "newsletter-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7157D2866C0C3005D5527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +112,16 @@
 				232FF5CF85CF6BA4AB96CF44 /* Pods-newsletter-iosTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D72695562866D59D00D64622 /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				D72695572866D59D00D64622 /* APIError.swift */,
+				D72695582866D59D00D64622 /* HttpClient.swift */,
+				D72695592866D59D00D64622 /* APISessionManager.swift */,
+			);
+			path = HTTPClient;
 			sourceTree = "<group>";
 		};
 		D7F715712866C0C3005D5527 = {
@@ -223,6 +239,7 @@
 		D7F715B72866C313005D5527 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D72695562866D59D00D64622 /* HTTPClient */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -517,8 +534,11 @@
 				D7F715822866C0C3005D5527 /* ViewController.swift in Sources */,
 				D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */,
 				D72695552866D3A600D64622 /* R.generated.swift in Sources */,
+				D726955C2866D59D00D64622 /* APISessionManager.swift in Sources */,
 				D7F715882866C0C3005D5527 /* newsletter_ios.xcdatamodeld in Sources */,
+				D726955B2866D59D00D64622 /* HttpClient.swift in Sources */,
 				D7F715802866C0C3005D5527 /* SceneDelegate.swift in Sources */,
+				D726955A2866D59D00D64622 /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
