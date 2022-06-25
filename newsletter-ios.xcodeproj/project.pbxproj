@@ -101,14 +101,11 @@
 		D7F7157C2866C0C3005D5527 /* newsletter-ios */ = {
 			isa = PBXGroup;
 			children = (
-				D7F7157D2866C0C3005D5527 /* AppDelegate.swift */,
-				D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */,
-				D7F715812866C0C3005D5527 /* ViewController.swift */,
-				D7F715832866C0C3005D5527 /* Main.storyboard */,
-				D7F715892866C0C6005D5527 /* Assets.xcassets */,
-				D7F7158B2866C0C6005D5527 /* LaunchScreen.storyboard */,
-				D7F7158E2866C0C6005D5527 /* Info.plist */,
-				D7F715862866C0C3005D5527 /* newsletter_ios.xcdatamodeld */,
+				D7F715B02866C1B4005D5527 /* Applicationn Layer */,
+				D7F715B12866C1BF005D5527 /* Presentation Layer */,
+				D7F715B22866C1C9005D5527 /* Business Logic Layer */,
+				D7F715B32866C1F0005D5527 /* Core Layer */,
+				D7F715B42866C20B005D5527 /* Supporting Files */,
 			);
 			path = "newsletter-ios";
 			sourceTree = "<group>";
@@ -128,6 +125,73 @@
 				D7F715A32866C0C6005D5527 /* newsletter_iosUITestsLaunchTests.swift */,
 			);
 			path = "newsletter-iosUITests";
+			sourceTree = "<group>";
+		};
+		D7F715B02866C1B4005D5527 /* Applicationn Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D7F7157D2866C0C3005D5527 /* AppDelegate.swift */,
+				D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */,
+			);
+			path = "Applicationn Layer";
+			sourceTree = "<group>";
+		};
+		D7F715B12866C1BF005D5527 /* Presentation Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D7F715B52866C283005D5527 /* Scenes */,
+			);
+			path = "Presentation Layer";
+			sourceTree = "<group>";
+		};
+		D7F715B22866C1C9005D5527 /* Business Logic Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Business Logic Layer";
+			sourceTree = "<group>";
+		};
+		D7F715B32866C1F0005D5527 /* Core Layer */ = {
+			isa = PBXGroup;
+			children = (
+				D7F715B72866C313005D5527 /* Network */,
+				D7F715862866C0C3005D5527 /* newsletter_ios.xcdatamodeld */,
+			);
+			path = "Core Layer";
+			sourceTree = "<group>";
+		};
+		D7F715B42866C20B005D5527 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D7F715B62866C29E005D5527 /* Resources */,
+				D7F7158E2866C0C6005D5527 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D7F715B52866C283005D5527 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D7F7158B2866C0C6005D5527 /* LaunchScreen.storyboard */,
+				D7F715832866C0C3005D5527 /* Main.storyboard */,
+				D7F715812866C0C3005D5527 /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		D7F715B62866C29E005D5527 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D7F715892866C0C6005D5527 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D7F715B72866C313005D5527 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +506,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "newsletter-ios/Info.plist";
+				INFOPLIST_FILE = "newsletter-ios/Supporting Files/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -469,7 +533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "newsletter-ios/Info.plist";
+				INFOPLIST_FILE = "newsletter-ios/Supporting Files/info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
