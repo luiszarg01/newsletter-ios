@@ -12,6 +12,7 @@ import Foundation
 struct PostModel: Codable {
     var userID, id: Int?
     var title, body: String?
+    var favorite:Bool = false
 
     enum CodingKeys: String, CodingKey {
         case userID = "userId"

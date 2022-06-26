@@ -53,5 +53,11 @@ final class PostsViewModel {
         })
     }
     
+    func setFavorite(onComplete: @escaping ((_ newFavorite:PostModel) -> Void)) {
+        selectedPost.favorite = !selectedPost.favorite
+        onComplete(selectedPost)
+        
+    }
+    
     
 }

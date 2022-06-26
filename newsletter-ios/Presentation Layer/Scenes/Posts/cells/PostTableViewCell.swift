@@ -10,9 +10,9 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var PostTitleLabel: UILabel!
-    @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var favoriteImageView: UIImageView!
     
     var postImage:UIImage!
     
@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
 
     func configure(model:PostModel) {
         PostTitleLabel.text = model.title
-        
+        favoriteImageView.isHidden = !model.favorite
     }
     
 }

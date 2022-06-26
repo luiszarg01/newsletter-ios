@@ -15,11 +15,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupView()
+        bindViewModel()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let backItem = UIBarButtonItem()
+        backItem.title = " "
+        navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = .white
+    }
+    
+    private func setupView() {
         tableView.delegate = self
         tableView.dataSource = self
-        
-
-        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     private func bindViewModel() {
@@ -30,6 +42,8 @@ class ViewController: UIViewController {
         viewModel.onPostsChanged = {
             self.tableView.reloadData()
         }
+    
+        
     }
 
 }
@@ -55,6 +69,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = R.storyboard.main.postDetailViewControllerID()!
         vc.viewModel.selectedPost = viewModel.posts[indexPath.row]
+        vc.viewModel.posts = viewModel.posts
+        vc.viewModel.onPostsChanged = viewModel.onPostsChanged
+        vc.onSetFavorite = { [self] newFavorite in
+            guard let idx = (self.viewModel.posts.firstIndex { $0.id == newFavorite.id }) else { return }
+            self.viewModel.posts[idx] = newFavorite
+        }
         let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
         vc.headerImage = cell.postImage
         self.navigationController?.pushViewController(vc, animated: true)

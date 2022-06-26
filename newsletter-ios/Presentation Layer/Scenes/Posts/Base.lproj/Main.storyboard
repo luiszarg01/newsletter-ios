@@ -28,7 +28,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted 11/04/2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIb-Fo-d26">
-                                                    <rect key="frame" x="120" y="12" width="274" height="13.5"/>
+                                                    <rect key="frame" x="120" y="12" width="244" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -46,14 +46,24 @@
                                                         <constraint firstAttribute="width" constant="90" id="stF-Yg-fmw"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AuO-Ur-I2M">
+                                                    <rect key="frame" x="374" y="9.5" width="20" height="20"/>
+                                                    <color key="tintColor" systemColor="systemYellowColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="6fg-sB-MA0"/>
+                                                        <constraint firstAttribute="height" constant="20" id="xvA-cE-IFD"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="oIb-Fo-d26" secondAttribute="trailing" constant="20" id="1yh-8m-co2"/>
                                                 <constraint firstItem="M7U-s5-JYh" firstAttribute="top" secondItem="oIb-Fo-d26" secondAttribute="bottom" constant="8" id="2Z6-ek-kbQ"/>
                                                 <constraint firstItem="a8Y-AU-1NS" firstAttribute="top" secondItem="wSb-iQ-gHb" secondAttribute="top" constant="10" id="6tZ-Og-nxO"/>
                                                 <constraint firstItem="oIb-Fo-d26" firstAttribute="leading" secondItem="a8Y-AU-1NS" secondAttribute="trailing" constant="10" id="9ml-CY-Xou"/>
                                                 <constraint firstAttribute="trailing" secondItem="M7U-s5-JYh" secondAttribute="trailing" constant="20" id="Abb-jG-hyT"/>
+                                                <constraint firstAttribute="trailing" secondItem="AuO-Ur-I2M" secondAttribute="trailing" constant="20" id="DnO-yX-ylS"/>
+                                                <constraint firstItem="AuO-Ur-I2M" firstAttribute="leading" secondItem="oIb-Fo-d26" secondAttribute="trailing" constant="10" id="O36-Ed-l9v"/>
                                                 <constraint firstItem="M7U-s5-JYh" firstAttribute="leading" secondItem="a8Y-AU-1NS" secondAttribute="trailing" constant="10" id="aPt-tD-pTR"/>
+                                                <constraint firstItem="AuO-Ur-I2M" firstAttribute="top" secondItem="wSb-iQ-gHb" secondAttribute="top" constant="10" id="drz-TV-8y9"/>
                                                 <constraint firstItem="a8Y-AU-1NS" firstAttribute="leading" secondItem="wSb-iQ-gHb" secondAttribute="leading" constant="20" id="tXn-TK-93D"/>
                                                 <constraint firstItem="oIb-Fo-d26" firstAttribute="top" secondItem="wSb-iQ-gHb" secondAttribute="top" constant="12" id="u2V-SE-Kkg"/>
                                             </constraints>
@@ -61,6 +71,7 @@
                                         <connections>
                                             <outlet property="PostTitleLabel" destination="M7U-s5-JYh" id="pUX-Sz-IbY"/>
                                             <outlet property="dateLabel" destination="oIb-Fo-d26" id="gfq-fa-fYh"/>
+                                            <outlet property="favoriteImageView" destination="AuO-Ur-I2M" id="XfU-G1-iZC"/>
                                             <outlet property="postImageView" destination="a8Y-AU-1NS" id="72u-te-NFu"/>
                                         </connections>
                                     </tableViewCell>
@@ -387,11 +398,15 @@
         <image name="resource1" width="2500" height="1667"/>
         <image name="resource3" width="5760" height="3840"/>
         <image name="resource4" width="5472" height="3648"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

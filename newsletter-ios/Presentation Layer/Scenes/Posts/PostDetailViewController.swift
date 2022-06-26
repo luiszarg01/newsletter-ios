@@ -23,6 +23,7 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var headerImageView: UIImageView!
     
     var viewModel = PostsViewModel()
+    var onSetFavorite: ( (PostModel) -> Void )?
 
     var headerImage:UIImage!
     
@@ -44,11 +45,20 @@ class PostDetailViewController: UIViewController {
     
     private func setupView() {
         
+        title = "Newsletter"
         headerImageView.image = headerImage
         tableView.delegate = self
         tableView.dataSource = self
         postTitleLabel.text = viewModel.selectedPost.title ?? ""
         postBodyLabel.text = viewModel.selectedPost.body ?? ""
+        
+        let imageName = viewModel.selectedPost.favorite ? "star.slash.fill" : "star.fill"
+        let favoriteImage = UIImage(systemName: imageName)!
+        let deleteImage  = UIImage(systemName: "trash.fill")!.withTintColor(.red)
+
+        let favoriteButton = UIBarButtonItem(image: favoriteImage,  style: .plain, target: self, action: #selector(didTapFavoriteButton(sender:)))
+        let deleteButton = UIBarButtonItem(image: deleteImage,  style: .plain, target: self, action: #selector(didTapDeleteButton(sender:)))
+        navigationItem.rightBarButtonItems = [favoriteButton, deleteButton]
         
     }
     
@@ -65,6 +75,17 @@ class PostDetailViewController: UIViewController {
         
     }
     
+    
+    @objc func didTapFavoriteButton(sender: AnyObject){
+        viewModel.setFavorite { newFavorite in
+            self.setupView()
+            self.onSetFavorite?(newFavorite)
+        }
+    }
+
+    @objc func didTapDeleteButton(sender: AnyObject){
+
+    }
 
     
 }
