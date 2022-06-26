@@ -11,6 +11,12 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
     
+    @IBOutlet weak var authorImageView: UIImageView!
+    @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var authorUsernameLabel: UILabel!
+    @IBOutlet weak var authorEmailLabel: UILabel!
+    @IBOutlet weak var authorPhoneLabel: UILabel!
+    @IBOutlet weak var authorWebsiteLabel: UILabel!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postBodyLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -19,11 +25,13 @@ class PostDetailViewController: UIViewController {
     
     var post:PostModel!
     var comments:[PostComment] = []
+    var author:UserModel!
     var headerImage:UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getComments()
+        getAuthor()
         setupView()
     }
     
@@ -37,6 +45,17 @@ class PostDetailViewController: UIViewController {
         
     }
     
+    private func setupAuthorView() {
+        
+        authorImageView.layer.cornerRadius = authorImageView.frame.width / 2
+        authorNameLabel.text = author.name
+        authorUsernameLabel.text = "(\(author.formattedUsername))"
+        authorEmailLabel.text = author.email
+        authorPhoneLabel.text = author.phone
+        authorWebsiteLabel.text = author.website
+        
+    }
+    
     private func getComments() {
         
         guard let id = post.id else { return }
@@ -46,6 +65,18 @@ class PostDetailViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
+    
+    private func getAuthor() {
+        
+        guard let id = post.userID else { return }
+        
+        HTTPClient.request(endpoint: "users/\(id)", onSuccess: { (response:UserModel) in
+            self.author = response
+            self.setupAuthorView()
+        })
+    }
+
+    
     
 }
 
