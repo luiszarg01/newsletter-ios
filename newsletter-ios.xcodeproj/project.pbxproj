@@ -13,6 +13,8 @@
 		D726955A2866D59D00D64622 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695572866D59D00D64622 /* APIError.swift */; };
 		D726955B2866D59D00D64622 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695582866D59D00D64622 /* HttpClient.swift */; };
 		D726955C2866D59D00D64622 /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695592866D59D00D64622 /* APISessionManager.swift */; };
+		D7B2B3532867C112007AB3E2 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2B3522867C112007AB3E2 /* PostDetailViewController.swift */; };
+		D7B2B3562867CA45007AB3E2 /* NewsLetterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2B3552867CA45007AB3E2 /* NewsLetterModel.swift */; };
 		D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157D2866C0C3005D5527 /* AppDelegate.swift */; };
 		D7F715802866C0C3005D5527 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */; };
 		D7F715822866C0C3005D5527 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F715812866C0C3005D5527 /* ViewController.swift */; };
@@ -56,6 +58,8 @@
 		D72695572866D59D00D64622 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D72695582866D59D00D64622 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		D72695592866D59D00D64622 /* APISessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
+		D7B2B3522867C112007AB3E2 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		D7B2B3552867CA45007AB3E2 /* NewsLetterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLetterModel.swift; sourceTree = "<group>"; };
 		D7F7157A2866C0C3005D5527 /* newsletter-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "newsletter-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7157D2866C0C3005D5527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,14 @@
 				D72695592866D59D00D64622 /* APISessionManager.swift */,
 			);
 			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		D7B2B3542867CA24007AB3E2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D7B2B3552867CA45007AB3E2 /* NewsLetterModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D7F715712866C0C3005D5527 = {
@@ -195,6 +207,7 @@
 		D7F715B22866C1C9005D5527 /* Business Logic Layer */ = {
 			isa = PBXGroup;
 			children = (
+				D7B2B3542867CA24007AB3E2 /* Models */,
 			);
 			path = "Business Logic Layer";
 			sourceTree = "<group>";
@@ -224,6 +237,7 @@
 				D7F7158B2866C0C6005D5527 /* LaunchScreen.storyboard */,
 				D7F715832866C0C3005D5527 /* Main.storyboard */,
 				D7F715812866C0C3005D5527 /* ViewController.swift */,
+				D7B2B3522867C112007AB3E2 /* PostDetailViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -535,7 +549,9 @@
 				D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */,
 				D72695552866D3A600D64622 /* R.generated.swift in Sources */,
 				D726955C2866D59D00D64622 /* APISessionManager.swift in Sources */,
+				D7B2B3532867C112007AB3E2 /* PostDetailViewController.swift in Sources */,
 				D7F715882866C0C3005D5527 /* newsletter_ios.xcdatamodeld in Sources */,
+				D7B2B3562867CA45007AB3E2 /* NewsLetterModel.swift in Sources */,
 				D726955B2866D59D00D64622 /* HttpClient.swift in Sources */,
 				D7F715802866C0C3005D5527 /* SceneDelegate.swift in Sources */,
 				D726955A2866D59D00D64622 /* APIError.swift in Sources */,
