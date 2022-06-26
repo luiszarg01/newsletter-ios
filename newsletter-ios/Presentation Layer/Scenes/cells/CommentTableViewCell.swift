@@ -8,16 +8,20 @@
 import UIKit
 
 class CommentTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userCommentLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.selectionStyle = .none
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configure(comment:PostComment) {
+        userImageView.layer.cornerRadius = userImageView.frame.width/2
+        userNameLabel.text = comment.name
+        userCommentLabel.text = comment.body
     }
-
+    
 }

@@ -47,6 +47,8 @@ class PostDetailViewController: UIViewController {
     
     private func setupAuthorView() {
         
+        authorImageView.layer.borderColor = UIColor.systemGreen.cgColor
+        authorImageView.layer.borderWidth = 3
         authorImageView.layer.cornerRadius = authorImageView.frame.width / 2
         authorNameLabel.text = author.name
         authorUsernameLabel.text = "(\(author.formattedUsername))"
@@ -75,8 +77,6 @@ class PostDetailViewController: UIViewController {
             self.setupAuthorView()
         })
     }
-
-    
     
 }
 
@@ -88,15 +88,13 @@ extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = comments[indexPath.row].body ?? ""
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
-        cell.textLabel?.numberOfLines = 0
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.commentTableViewCellID, for: indexPath)!
+        cell.configure(comment: comments[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 110
     }
     
 }
