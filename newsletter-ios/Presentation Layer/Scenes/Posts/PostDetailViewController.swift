@@ -88,7 +88,9 @@ class PostDetailViewController: UIViewController {
     }
 
     @objc func didTapDeleteButton(sender: AnyObject){
-
+        CustomAlertViewController.show(title: "Warning", message: "Are you sure you want to delete this post?", image: R.image.delete()!.tinted_with(color: .systemGreen)!, in: self, onCompletion: {
+            print("delete post")
+        })
     }
 
     
