@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 
 // MARK: - PostModel
-struct PostModel: Codable {
+struct PostModel: Codable, Equatable {
     var userID, id: Int?
     var title, body: String?
+    
+    //extra
     var favorite:Bool = false
+    var image:UIImage? = UIImage(named: "resource\(Int.random(in: 1...10))")
+    
 
     enum CodingKeys: String, CodingKey {
         case userID = "userId"

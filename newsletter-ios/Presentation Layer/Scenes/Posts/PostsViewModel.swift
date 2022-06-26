@@ -9,7 +9,9 @@ import Foundation
 
 final class PostsViewModel {
     
-    var posts:[PostModel] = [] {
+    var posts:[PostModel] = []
+    
+    var filteredPosts:[PostModel] = [] {
         
         didSet {
             onPostsChanged?()
@@ -25,6 +27,7 @@ final class PostsViewModel {
         HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
             guard let self = self else { return }
             self.posts = response
+            self.filteredPosts = response
             self.onPostsChanged?()
             onResponse()
         })
@@ -57,6 +60,10 @@ final class PostsViewModel {
         selectedPost.favorite = !selectedPost.favorite
         onComplete(selectedPost)
         
+    }
+    
+    func filterByFavorites() {
+        filteredPosts = posts.filter { $0.favorite }
     }
     
     

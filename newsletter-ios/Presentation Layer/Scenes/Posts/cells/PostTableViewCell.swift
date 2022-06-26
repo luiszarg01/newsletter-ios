@@ -20,10 +20,11 @@ class PostTableViewCell: UITableViewCell {
         super.awakeFromNib()
         let random = Int.random(in: 1..<10)
         postImage = UIImage(named: "resource\(random)")
-        postImageView.image = postImage
+
     }
 
     func configure(model:PostModel) {
+        postImageView.image = model.image
         PostTitleLabel.text = model.title
         favoriteImageView.isHidden = !model.favorite
     }

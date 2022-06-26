@@ -87,6 +87,9 @@
                                     <segment title="Favorites"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
+                                <connections>
+                                    <action selector="onSegmentControlTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="swn-On-xYG"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -103,6 +106,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Newsletter" id="jOM-y4-55o"/>
                     <connections>
+                        <outlet property="listFiltersegmentControl" destination="DSy-3c-MEl" id="tqa-aN-I5q"/>
                         <outlet property="tableView" destination="nHQ-R8-fXG" id="zKE-B8-nUD"/>
                     </connections>
                 </viewController>
