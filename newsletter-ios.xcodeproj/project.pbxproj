@@ -19,7 +19,7 @@
 		D7B2B35B286885B7007AB3E2 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2B35A286885B7007AB3E2 /* CommentTableViewCell.swift */; };
 		D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157D2866C0C3005D5527 /* AppDelegate.swift */; };
 		D7F715802866C0C3005D5527 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */; };
-		D7F715822866C0C3005D5527 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F715812866C0C3005D5527 /* ViewController.swift */; };
+		D7F715822866C0C3005D5527 /* PostsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F715812866C0C3005D5527 /* PostsListViewController.swift */; };
 		D7F715852866C0C3005D5527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F715832866C0C3005D5527 /* Main.storyboard */; };
 		D7F715882866C0C3005D5527 /* newsletter_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7F715862866C0C3005D5527 /* newsletter_ios.xcdatamodeld */; };
 		D7F7158A2866C0C6005D5527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7F715892866C0C6005D5527 /* Assets.xcassets */; };
@@ -67,7 +67,7 @@
 		D7F7157A2866C0C3005D5527 /* newsletter-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "newsletter-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F7157D2866C0C3005D5527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7F7157F2866C0C3005D5527 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D7F715812866C0C3005D5527 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7F715812866C0C3005D5527 /* PostsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListViewController.swift; sourceTree = "<group>"; };
 		D7F715842866C0C3005D5527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7F715872866C0C3005D5527 /* newsletter_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = newsletter_ios.xcdatamodel; sourceTree = "<group>"; };
 		D7F715892866C0C6005D5527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +120,17 @@
 				232FF5CF85CF6BA4AB96CF44 /* Pods-newsletter-iosTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D707C28E2868D07A00239D1D /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				D7B2B3572868858F007AB3E2 /* cells */,
+				D7F715832866C0C3005D5527 /* Main.storyboard */,
+				D7F715812866C0C3005D5527 /* PostsListViewController.swift */,
+				D7B2B3522867C112007AB3E2 /* PostDetailViewController.swift */,
+			);
+			path = Posts;
 			sourceTree = "<group>";
 		};
 		D72695562866D59D00D64622 /* HTTPClient */ = {
@@ -247,11 +258,8 @@
 		D7F715B52866C283005D5527 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				D7B2B3572868858F007AB3E2 /* cells */,
+				D707C28E2868D07A00239D1D /* Posts */,
 				D7F7158B2866C0C6005D5527 /* LaunchScreen.storyboard */,
-				D7F715832866C0C3005D5527 /* Main.storyboard */,
-				D7F715812866C0C3005D5527 /* ViewController.swift */,
-				D7B2B3522867C112007AB3E2 /* PostDetailViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -560,7 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7B2B359286885A5007AB3E2 /* PostTableViewCell.swift in Sources */,
-				D7F715822866C0C3005D5527 /* ViewController.swift in Sources */,
+				D7F715822866C0C3005D5527 /* PostsListViewController.swift in Sources */,
 				D7F7157E2866C0C3005D5527 /* AppDelegate.swift in Sources */,
 				D72695552866D3A600D64622 /* R.generated.swift in Sources */,
 				D726955C2866D59D00D64622 /* APISessionManager.swift in Sources */,
