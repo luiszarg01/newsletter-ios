@@ -87,10 +87,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         vc.title = self.navigationItem.title
         vc.viewModel.selectedPost = model
         vc.viewModel.onPostsChanged = viewModel.onPostsChanged
-        vc.onSetFavorite = { [self] newFavorite in
+        vc.onSetFavorite = { [weak self] newFavorite in
+            guard let self = self else { return }
             guard let idx = (self.viewModel.posts.firstIndex { $0.id == newFavorite.id }) else { return }
             self.viewModel.posts[idx] = newFavorite
+            self.viewModel.posts = self.viewModel.posts.sorted { $0.favorite && !$1.favorite}
             self.viewModel.filteredPosts = self.viewModel.posts
+        }
+        
+        vc.onDelete = { [weak self] post in
+            guard let self = self else { return }
+            self.viewModel.removePost(post: post)
         }
         vc.headerImage = model.image
         self.navigationController?.pushViewController(vc, animated: true)

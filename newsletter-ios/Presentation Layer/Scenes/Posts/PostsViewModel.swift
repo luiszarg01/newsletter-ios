@@ -28,8 +28,6 @@ final class PostsViewModel {
             guard let self = self else { return }
             self.posts = response
             self.filteredPosts = response
-            self.onPostsChanged?()
-            onResponse()
         })
     }
     
@@ -63,7 +61,16 @@ final class PostsViewModel {
     }
     
     func filterByFavorites() {
+        
         filteredPosts = posts.filter { $0.favorite }
+    }
+    
+    func removePost(post:PostModel) {
+
+        guard let idx = (self.posts.firstIndex { $0.id == post.id }) else { return }
+        self.posts.remove(at: idx)
+        self.filteredPosts = self.posts
+        
     }
     
     

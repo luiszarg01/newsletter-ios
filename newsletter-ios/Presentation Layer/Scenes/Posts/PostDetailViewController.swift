@@ -24,7 +24,8 @@ class PostDetailViewController: UIViewController {
     
     var viewModel = PostsViewModel()
     var onSetFavorite: ( (PostModel) -> Void )?
-
+    var onDelete:( (PostModel) -> Void )?
+    
     var headerImage:UIImage!
     
     override func viewDidLoad() {
@@ -87,12 +88,14 @@ class PostDetailViewController: UIViewController {
         }
     }
 
-    @objc func didTapDeleteButton(sender: AnyObject){
+    @objc func didTapDeleteButton(sender: AnyObject) {
+        
         CustomAlertViewController.show(title: "Warning", message: "Are you sure you want to delete this post?", image: R.image.delete()!.tinted_with(color: .systemGreen)!, in: self, onCompletion: {
-            print("delete post")
+            self.onDelete?(self.viewModel.selectedPost)
+            self.navigationController?.popViewController(animated: true)
+            
         })
     }
-
     
 }
 
