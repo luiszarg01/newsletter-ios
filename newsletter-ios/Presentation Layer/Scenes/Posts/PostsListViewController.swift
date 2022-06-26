@@ -68,6 +68,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = R.storyboard.main.postDetailViewControllerID()!
+        vc.title = self.navigationItem.title
         vc.viewModel.selectedPost = viewModel.posts[indexPath.row]
         vc.viewModel.posts = viewModel.posts
         vc.viewModel.onPostsChanged = viewModel.onPostsChanged

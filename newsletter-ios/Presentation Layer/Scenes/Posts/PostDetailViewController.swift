@@ -45,12 +45,15 @@ class PostDetailViewController: UIViewController {
     
     private func setupView() {
         
-        title = "Newsletter"
         headerImageView.image = headerImage
         tableView.delegate = self
         tableView.dataSource = self
         postTitleLabel.text = viewModel.selectedPost.title ?? ""
         postBodyLabel.text = viewModel.selectedPost.body ?? ""
+        setupNavBar()
+    }
+    
+    private func setupNavBar() {
         
         let imageName = viewModel.selectedPost.favorite ? "star.slash.fill" : "star.fill"
         let favoriteImage = UIImage(systemName: imageName)!
@@ -58,7 +61,8 @@ class PostDetailViewController: UIViewController {
 
         let favoriteButton = UIBarButtonItem(image: favoriteImage,  style: .plain, target: self, action: #selector(didTapFavoriteButton(sender:)))
         let deleteButton = UIBarButtonItem(image: deleteImage,  style: .plain, target: self, action: #selector(didTapDeleteButton(sender:)))
-        navigationItem.rightBarButtonItems = [favoriteButton, deleteButton]
+        let buttons = viewModel.selectedPost.favorite ? [favoriteButton] : [favoriteButton, deleteButton]
+        navigationItem.rightBarButtonItems = buttons
         
     }
     
@@ -78,7 +82,7 @@ class PostDetailViewController: UIViewController {
     
     @objc func didTapFavoriteButton(sender: AnyObject){
         viewModel.setFavorite { newFavorite in
-            self.setupView()
+            self.setupNavBar()
             self.onSetFavorite?(newFavorite)
         }
     }
