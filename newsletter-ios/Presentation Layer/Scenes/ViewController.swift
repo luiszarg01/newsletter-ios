@@ -34,20 +34,22 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = posts[indexPath.row].title
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
-        cell.textLabel?.numberOfLines = 0
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.postTableViewCellID, for: indexPath)!
+        cell.configure(model: posts[indexPath.row])
+        cell.selectionStyle = .none
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 115
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = R.storyboard.main.postDetailViewControllerID()!
         vc.post = posts[indexPath.row]
+        let cell = tableView.cellForRow(at: indexPath) as! PostTableViewCell
+        vc.headerImage = cell.postImage
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

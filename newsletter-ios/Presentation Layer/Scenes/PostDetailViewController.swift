@@ -14,9 +14,12 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postBodyLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerImageView: UIImageView!
+    
     
     var post:PostModel!
     var comments:[PostComment] = []
+    var headerImage:UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,7 @@ class PostDetailViewController: UIViewController {
     
     private func setupView() {
         
+        headerImageView.image = headerImage
         tableView.delegate = self
         tableView.dataSource = self
         postTitleLabel.text = post.title ?? ""
