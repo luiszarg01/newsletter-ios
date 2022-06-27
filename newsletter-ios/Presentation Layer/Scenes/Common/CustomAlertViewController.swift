@@ -42,9 +42,7 @@ class CustomAlertViewController: UIViewController {
         }else if let popupTitle = alertTitleAttr, popupTitle.length > 0 {
             titleAlert.attributedText = popupTitle
             titleAlert.numberOfLines = 0
-            
-            negativeButton.setTitleColor(.systemGreen, for: .normal)
-        }else {
+        } else {
             titleAlert.isHidden = true
         }
         
@@ -67,7 +65,6 @@ class CustomAlertViewController: UIViewController {
         titleAlert.textColor = mainColor
         separator.backgroundColor = mainColor
         messageAlert.font = UIFont.systemFont(ofSize: 14)
-        messageAlert.textColor = .black
         
         positiveButton.setTitle(positiveBttnTitle, for: .normal)
         positiveButton.setTitleColor(.white, for: .normal)
@@ -75,9 +72,18 @@ class CustomAlertViewController: UIViewController {
         positiveButton.backgroundColor = mainColor
         
         negativeButton.setTitle(negativeBttnTitle, for: .normal)
-        negativeButton.backgroundColor = .white
         negativeButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        cardContainer.layer.cornerRadius = 10
+        negativeButton.setTitleColor(mainColor, for: .normal)
+        negativeButton.layer.borderWidth = 1
+        negativeButton.layer.borderColor = mainColor.cgColor
+        negativeButton.backgroundColor = .systemBackground
+        
+        cardContainer.layer.cornerRadius = 5
+        cardContainer.layer.shadowColor = UIColor.white.cgColor
+        cardContainer.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cardContainer.layer.shadowOpacity = 0.7
+        cardContainer.layer.shadowRadius = 4.0
+
     }
     
     @IBAction func onTapPositiveButton(_ sender: Any) {
