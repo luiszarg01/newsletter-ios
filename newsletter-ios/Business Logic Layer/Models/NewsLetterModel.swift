@@ -16,7 +16,16 @@ struct PostModel: Codable, Equatable {
     
     //extra
     var favorite:Bool = false
-    var image:UIImage? = UIImage(named: "resource\(Int.random(in: 1...10))")
+    var image:UIImage?
+    
+    init(model:PostPersistModel) {
+        self.userID = Int(model.id)
+        self.id = Int(model.id)
+        self.title = model.title
+        self.body = model.body
+        self.favorite = model.favorite
+        self.image = UIImage(named: "resource\(Int.random(in: 1...10))")
+    }
     
 
     enum CodingKeys: String, CodingKey {

@@ -12,6 +12,9 @@
 		D707C2902868D0EF00239D1D /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C28F2868D0EF00239D1D /* PostsViewModel.swift */; };
 		D707C295286901CE00239D1D /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C294286901CE00239D1D /* CustomAlertViewController.swift */; };
 		D707C2972869047000239D1D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C2962869047000239D1D /* Utils.swift */; };
+		D707C2A9286935ED00239D1D /* PostCoreDataAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C2A8286935ED00239D1D /* PostCoreDataAdapter.swift */; };
+		D707C2AC2869374F00239D1D /* PostPersistModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C2AA2869374F00239D1D /* PostPersistModel+CoreDataClass.swift */; };
+		D707C2AD2869374F00239D1D /* PostPersistModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D707C2AB2869374F00239D1D /* PostPersistModel+CoreDataProperties.swift */; };
 		D72695552866D3A600D64622 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695542866D3A600D64622 /* R.generated.swift */; };
 		D726955A2866D59D00D64622 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695572866D59D00D64622 /* APIError.swift */; };
 		D726955B2866D59D00D64622 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72695582866D59D00D64622 /* HttpClient.swift */; };
@@ -62,6 +65,9 @@
 		D707C28F2868D0EF00239D1D /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		D707C294286901CE00239D1D /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		D707C2962869047000239D1D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		D707C2A8286935ED00239D1D /* PostCoreDataAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoreDataAdapter.swift; sourceTree = "<group>"; };
+		D707C2AA2869374F00239D1D /* PostPersistModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostPersistModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D707C2AB2869374F00239D1D /* PostPersistModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostPersistModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		D72695542866D3A600D64622 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D72695572866D59D00D64622 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D72695582866D59D00D64622 /* HttpClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
@@ -257,6 +263,7 @@
 				D7F715B92866CF1E005D5527 /* Resources */,
 				D7F715B72866C313005D5527 /* Network */,
 				D7F715862866C0C3005D5527 /* newsletter_ios.xcdatamodeld */,
+				D707C2A8286935ED00239D1D /* PostCoreDataAdapter.swift */,
 			);
 			path = "Core Layer";
 			sourceTree = "<group>";
@@ -308,6 +315,8 @@
 		D7F715BA2866CF25005D5527 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				D707C2AA2869374F00239D1D /* PostPersistModel+CoreDataClass.swift */,
+				D707C2AB2869374F00239D1D /* PostPersistModel+CoreDataProperties.swift */,
 				D72695542866D3A600D64622 /* R.generated.swift */,
 			);
 			path = Generated;
@@ -584,6 +593,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D707C2AC2869374F00239D1D /* PostPersistModel+CoreDataClass.swift in Sources */,
+				D707C2A9286935ED00239D1D /* PostCoreDataAdapter.swift in Sources */,
+				D707C2AD2869374F00239D1D /* PostPersistModel+CoreDataProperties.swift in Sources */,
 				D7B2B359286885A5007AB3E2 /* PostTableViewCell.swift in Sources */,
 				D7F715822866C0C3005D5527 /* PostsListViewController.swift in Sources */,
 				D707C2902868D0EF00239D1D /* PostsViewModel.swift in Sources */,
