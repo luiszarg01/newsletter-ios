@@ -22,13 +22,29 @@ final class PostsViewModel {
     var comments:[PostComment] = []
     var author:UserModel!
     var onPostsChanged: ( () -> Void )?
+    var postsCoreDataAdapter = PostsCoreDataAdapter()
     
     func getPosts(onResponse: @escaping (() -> Void)) {
-        HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
-            guard let self = self else { return }
-            self.posts = response
-            self.filteredPosts = response
-        })
+        
+        let posts = postsCoreDataAdapter.getPosts()
+        
+        if !posts.isEmpty {
+            self.posts = posts
+            self.filteredPosts = posts
+        } else {
+            HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
+                guard let self = self else { return }
+                self.posts = response
+                self.filteredPosts = response
+                
+                response.forEach { post in
+                    self.postsCoreDataAdapter.savePost(model: post)
+                }
+                
+            })
+        }
+        
+
     }
     
     func getComments( onComplete: @escaping (() -> Void) ) {
@@ -56,6 +72,7 @@ final class PostsViewModel {
     
     func setFavorite(onComplete: @escaping ((_ newFavorite:PostModel) -> Void)) {
         selectedPost.favorite = !selectedPost.favorite
+        postsCoreDataAdapter.savePost(model: selectedPost)
         onComplete(selectedPost)
         
     }
@@ -63,6 +80,13 @@ final class PostsViewModel {
     func filterByFavorites() {
         
         filteredPosts = posts.filter { $0.favorite }
+    }
+    
+    func removeAll() {
+        
+        posts.removeAll { !$0.favorite }
+        filteredPosts = posts
+
     }
     
     func removePost(post:PostModel) {

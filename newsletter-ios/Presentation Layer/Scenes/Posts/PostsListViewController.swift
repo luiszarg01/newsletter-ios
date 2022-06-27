@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     private var viewModel = PostsViewModel()
     @IBOutlet weak var listFiltersegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deleteViewContainer: UIView!
+    @IBOutlet weak var deleteIcon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,9 @@ class ViewController: UIViewController {
     }
     
     private func setupView() {
+        deleteIcon.image = R.image.delete()!.tinted_with(color: .white)
+        deleteViewContainer.layer.cornerRadius = deleteViewContainer.frame.width/2
+        deleteViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector( onDeleteButtonTapped(_:))))
         tableView.delegate = self
         tableView.dataSource = self
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -41,14 +46,20 @@ class ViewController: UIViewController {
         }
         
         viewModel.onPostsChanged = {
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     
         
     }
 
-    @IBAction func onSegmentControlTapped(_ sender: Any) {
+    @IBAction func onSegmentControlTapped() {
         
+
+        
+    }
+    @IBAction func segmentControlTapped(_ sender: Any) {
         switch listFiltersegmentControl.selectedSegmentIndex  {
             
         case 0:
@@ -60,7 +71,16 @@ class ViewController: UIViewController {
             break
         }
         
+        
     }
+    
+    @objc func onDeleteButtonTapped(_ sender:AnyObject) {
+        CustomAlertViewController.show(mainColor: .systemPink, title: "Warning", message: "Are you sure you want to remove all entries? this action won't delete favorites.", image: R.image.delete()!.tinted_with(color: .systemPink)!, in: self, onCompletion: {
+            self.viewModel.removeAll()
+        })
+
+    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
