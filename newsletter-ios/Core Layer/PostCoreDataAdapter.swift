@@ -66,24 +66,11 @@ class PostsCoreDataAdapter {
     
     func deletePost(model:PostPersistModel){
         
-//        let post = PostPersistModel(context: context)
-//        post.id = Int16(model.id!)
-//        post.userId = Int16(model.id!)
-//        post.title = model.title!
-//        post.body = model.body!
-//        post.favorite = model.favorite
-        
         context.delete(model)
         print("deleted")
         savePostsContext()
+        
     }
     
 }
 
-
-struct Singleton {
-    static var shared = Singleton()
-    
-    var posts:[PostPersistModel] = []
-    
-}

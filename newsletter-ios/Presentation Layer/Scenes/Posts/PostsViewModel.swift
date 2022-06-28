@@ -42,9 +42,7 @@ final class PostsViewModel {
         
         HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
             guard let self = self else { return }
-            
-            let cachedPosts = self.postsCoreDataAdapter.getPosts()
-            
+                        
             for post in response {
                 
                 if Singleton.shared.posts.contains(where: { $0.id == post.id! }) { continue }
@@ -99,7 +97,6 @@ final class PostsViewModel {
     
     func removeAll() {
         
-//        le.t noFavorites = posts.filter { !$0.favorite }
         let noFavoritesCore = Singleton.shared.posts.filter { !$0.favorite }
         
         //remove from core data
