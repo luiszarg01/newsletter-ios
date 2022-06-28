@@ -25,25 +25,37 @@ final class PostsViewModel {
     var postsCoreDataAdapter = PostsCoreDataAdapter()
     
     func getPosts(onResponse: @escaping (() -> Void)) {
-        
+
+        self.postsCoreDataAdapter.getPostsFromCore()
         let posts = postsCoreDataAdapter.getPosts()
         
         if !posts.isEmpty {
             self.posts = posts
             self.filteredPosts = posts
         } else {
-            HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
-                guard let self = self else { return }
-                self.posts = response
-                self.filteredPosts = response
-                
-                response.forEach { post in
-                    self.postsCoreDataAdapter.savePost(model: post)
-                }
-                
-            })
+            getPostsFromAPI()
         }
+
+    }
+    
+    func getPostsFromAPI() {
         
+        HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
+            guard let self = self else { return }
+            
+            let cachedPosts = self.postsCoreDataAdapter.getPosts()
+            
+            for post in response {
+                
+                if Singleton.shared.posts.contains(where: { $0.id == post.id! }) { continue }
+                self.postsCoreDataAdapter.createPost(model: post)
+            }
+            
+            self.postsCoreDataAdapter.getPostsFromCore()
+            self.posts = self.postsCoreDataAdapter.getPosts()
+            self.filteredPosts = self.posts
+            
+        })
 
     }
     
@@ -71,8 +83,11 @@ final class PostsViewModel {
     }
     
     func setFavorite(onComplete: @escaping ((_ newFavorite:PostModel) -> Void)) {
+        
+        postsCoreDataAdapter.setFavorite(post: selectedPost)
+        posts = postsCoreDataAdapter.getPosts()
+        filteredPosts = posts
         selectedPost.favorite = !selectedPost.favorite
-        postsCoreDataAdapter.savePost(model: selectedPost)
         onComplete(selectedPost)
         
     }
@@ -84,16 +99,25 @@ final class PostsViewModel {
     
     func removeAll() {
         
-        posts.removeAll { !$0.favorite }
+//        le.t noFavorites = posts.filter { !$0.favorite }
+        let noFavoritesCore = Singleton.shared.posts.filter { !$0.favorite }
+        
+        //remove from core data
+        noFavoritesCore.forEach { self.postsCoreDataAdapter.deletePost(model: $0) }
+        
+        //remove local
+        posts = postsCoreDataAdapter.getPosts()
         filteredPosts = posts
 
     }
     
     func removePost(post:PostModel) {
 
-        guard let idx = (self.posts.firstIndex { $0.id == post.id }) else { return }
-        self.posts.remove(at: idx)
-        self.filteredPosts = self.posts
+        guard let post = (Singleton.shared.posts.first { $0.id == post.id! }) else { return }
+        postsCoreDataAdapter.deletePost(model: post)
+        
+        posts = postsCoreDataAdapter.getPosts()
+        filteredPosts = posts
         
     }
     

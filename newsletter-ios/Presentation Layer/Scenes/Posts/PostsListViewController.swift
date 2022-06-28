@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var deleteViewContainer: UIView!
     @IBOutlet weak var deleteIcon: UIImageView!
     
+    private var pullControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,14 @@ class ViewController: UIViewController {
     }
     
     private func setupView() {
+        
+        pullControl.addTarget(self, action: #selector(refreshListData), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = pullControl
+        } else {
+            tableView.addSubview(pullControl)
+        }
+        
         deleteIcon.image = R.image.delete()!.tinted_with(color: .white)
         deleteViewContainer.layer.cornerRadius = deleteViewContainer.frame.width/2
         deleteViewContainer.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector( onDeleteButtonTapped(_:))))
@@ -54,17 +64,17 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func onSegmentControlTapped() {
-        
-
-        
+    @objc private func refreshListData() {
+        viewModel.getPostsFromAPI()
+        self.pullControl.endRefreshing()
     }
+    
+    
     @IBAction func segmentControlTapped(_ sender: Any) {
         switch listFiltersegmentControl.selectedSegmentIndex  {
             
         case 0:
             viewModel.filteredPosts = viewModel.posts
-            tableView.reloadData()
         case 1:
             viewModel.filterByFavorites()
         default:
@@ -117,6 +127,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         vc.onDelete = { [weak self] post in
             guard let self = self else { return }
+            self.viewModel.posts.removeAll { $0.id == post.id! }
+            self.viewModel.filteredPosts = self.viewModel.posts
+            self.tableView.reloadData()
             self.viewModel.removePost(post: post)
         }
         vc.headerImage = model.image

@@ -14,23 +14,26 @@ class PostsCoreDataAdapter {
     var posts:[PostPersistModel] = []
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    func getPosts() -> [PostModel] {
-        
+    func getPostsFromCore() {
         let request: NSFetchRequest<PostPersistModel> = PostPersistModel.fetchRequest()
 
         do {
-           posts = try context.fetch(request)
+            let result = try context.fetch(request)
+            Singleton.shared.posts = result
         } catch {
             print("Error loading the data \(error)")
         }
-
-        posts = posts.sorted(by: {$0.favorite && !$1.favorite})
-        let result = posts.map { $0.toPostModel }
+    }
+    
+    func getPosts() -> [PostModel] {
+        
+        let temp = Singleton.shared.posts.sorted(by: {$0.favorite && !$1.favorite})
+        let result = temp.map { $0.toPostModel }
 
         return result
     }
     
-    func savePost(model:PostModel) {
+    func createPost(model:PostModel) {
         
         let newPost = PostPersistModel(context: context)
         newPost.id = Int16(model.id!)
@@ -43,6 +46,12 @@ class PostsCoreDataAdapter {
         savePostsContext()
     }
     
+    func setFavorite(post:PostModel) {
+        guard let idx = (Singleton.shared.posts.firstIndex { $0.id == post.id! }) else { return }
+        Singleton.shared.posts[idx].favorite = !Singleton.shared.posts[idx].favorite
+        savePostsContext()
+    }
+    
     func savePostsContext(){
         
         do {
@@ -50,20 +59,31 @@ class PostsCoreDataAdapter {
         } catch {
            print("Error saving context \(error)")
         }
+        
+        getPostsFromCore()
 
     }
     
-    func deletePost(model:PostModel){
+    func deletePost(model:PostPersistModel){
         
-        let post = PostPersistModel(context: context)
-        post.id = Int16(model.id!)
-        post.userId = Int16(model.id!)
-        post.title = model.title!
-        post.body = model.body!
-        post.favorite = model.favorite
+//        let post = PostPersistModel(context: context)
+//        post.id = Int16(model.id!)
+//        post.userId = Int16(model.id!)
+//        post.title = model.title!
+//        post.body = model.body!
+//        post.favorite = model.favorite
         
-        context.delete(post)
+        context.delete(model)
+        print("deleted")
         savePostsContext()
     }
+    
+}
+
+
+struct Singleton {
+    static var shared = Singleton()
+    
+    var posts:[PostPersistModel] = []
     
 }
