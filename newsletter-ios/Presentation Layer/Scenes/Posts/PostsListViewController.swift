@@ -53,6 +53,7 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        viewModel.parentView = self
         viewModel.getPosts {
             self.tableView.reloadData()
         }

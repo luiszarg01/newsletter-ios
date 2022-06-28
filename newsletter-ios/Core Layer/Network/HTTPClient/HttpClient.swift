@@ -47,6 +47,7 @@ class HTTPClient {
                                   encoding: APIEncoding  = .url,
                                   parameters: APIParameters? = nil,
                                   headers:APIHeaders? = nil,
+                                  viewController:UIViewController,
                                   onSuccess: @escaping (T) -> Void,
                                   onFailure: ((APIError) -> Bool)? = nil) {
         
@@ -60,7 +61,7 @@ class HTTPClient {
             guard let error = try? decoder.decode(APIError.self, from: data) else { return }
             
             //handle by error type cases
-            switch error.type! {
+            switch error.type ?? "" {
             case "--": // Session expired.
 
                 break
@@ -92,9 +93,12 @@ class HTTPClient {
                                                        headers: header)
         
         
+        viewController.showActivityIndicator()
+        
         request.responseJSON(completionHandler: { response in
             request.responseJSON(completionHandler: { response in
                 
+                viewController.hideActivityIndicator()
                 guard (response.response?.statusCode == 200 || response.response?.statusCode == 201 ) && response.error == nil, let data = response.data else {
                     handleError(response.data)
                     return

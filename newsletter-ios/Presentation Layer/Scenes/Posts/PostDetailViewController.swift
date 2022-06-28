@@ -35,6 +35,7 @@ class PostDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        viewModel.parentView = self
         viewModel.getComments {
             self.tableView.reloadData()
         }

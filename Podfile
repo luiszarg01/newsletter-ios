@@ -9,6 +9,7 @@ target 'newsletter-ios' do
   pod 'Alamofire', '~> 4.9.1'
   pod 'Sniffer'
   pod 'R.swift', '~> 5.4'
+  pod 'NVActivityIndicatorView/Extended'
 
   target 'newsletter-iosTests' do
     inherit! :search_paths

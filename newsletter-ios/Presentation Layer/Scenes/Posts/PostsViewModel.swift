@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class PostsViewModel {
     
@@ -19,10 +20,11 @@ final class PostsViewModel {
         
     }
     var selectedPost:PostModel!
-    var comments:[PostComment] = []
+    var comments:[PostComment]!
     var author:UserModel!
     var onPostsChanged: ( () -> Void )?
     var postsCoreDataAdapter = PostsCoreDataAdapter()
+    var parentView:UIViewController!
     
     func getPosts(onResponse: @escaping (() -> Void)) {
 
@@ -40,7 +42,7 @@ final class PostsViewModel {
     
     func getPostsFromAPI() {
         
-        HTTPClient.request(endpoint: "posts", onSuccess: { [weak self] (response:[PostModel]) in
+        HTTPClient.request(endpoint: "posts", viewController: parentView, onSuccess: { [weak self] (response:[PostModel]) in
             guard let self = self else { return }
                         
             for post in response {
@@ -53,6 +55,10 @@ final class PostsViewModel {
             self.posts = self.postsCoreDataAdapter.getPosts()
             self.filteredPosts = self.posts
             
+        }, onFailure: { [weak self] error in
+            guard let self = self else { return false }
+            Utils.showAlert(withMessage: error.message ?? "An error has encountered", in: self.parentView)
+            return true
         })
 
     }
@@ -61,10 +67,15 @@ final class PostsViewModel {
         
         guard let id = selectedPost.id else { return }
         
-        HTTPClient.request(endpoint: "posts/\(id)/comments", onSuccess: { [weak self] (response:[PostComment]) in
+        HTTPClient.request(endpoint: "posts/\(id)/comments", viewController: parentView, onSuccess: { [weak self] (response:[PostComment]) in
             guard let self = self else { return }
             self.comments = response
             onComplete()
+        }, onFailure: { [weak self] error in
+            onComplete()
+            guard let self = self else { return false }
+            Utils.showAlert(withMessage: error.message ?? "An error has encountered", in: self.parentView)
+            return true
         })
     }
     
@@ -72,11 +83,16 @@ final class PostsViewModel {
         
         guard let id = selectedPost.userID else { return }
         
-        HTTPClient.request(endpoint: "users/\(id)", onSuccess: { [weak self] (response:UserModel) in
+        HTTPClient.request(endpoint: "users/\(id)", viewController: parentView, onSuccess: { [weak self] (response:UserModel) in
             guard let self = self else { return }
 
             self.author = response
             onComplete()
+        }, onFailure: { [weak self] error in
+            onComplete()
+            guard let self = self else { return false }
+            Utils.showAlert(withMessage: error.message ?? "An error has encountered", in: self.parentView)
+            return true
         })
     }
     
