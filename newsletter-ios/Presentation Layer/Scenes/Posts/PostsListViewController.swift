@@ -99,15 +99,28 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.filteredPosts.count
+        viewModel.filteredPosts.isEmpty ? 1 : viewModel.filteredPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.postTableViewCellID, for: indexPath)!
-        cell.configure(model: viewModel.filteredPosts[indexPath.row])
-        cell.selectionStyle = .none
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        return cell
+        
+        if !viewModel.filteredPosts.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.postTableViewCellID, for: indexPath)!
+            cell.configure(model: viewModel.filteredPosts[indexPath.row])
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return cell
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "No posts avaiable"
+            cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .light)
+            return cell
+        }
+        
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

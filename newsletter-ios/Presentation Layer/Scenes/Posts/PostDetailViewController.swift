@@ -116,13 +116,26 @@ class PostDetailViewController: UIViewController {
 extension PostDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.comments.count
+        viewModel.comments.isEmpty ? 1 : viewModel.comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.commentTableViewCellID, for: indexPath)!
-        cell.configure(comment: viewModel.comments[indexPath.row])
-        return cell
+        
+        if !viewModel.comments.isEmpty {
+            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.commentTableViewCellID, for: indexPath)!
+            cell.configure(comment: viewModel.comments[indexPath.row])
+            return cell
+            
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "No comments yet."
+            cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 17, weight: .light)
+            return cell
+        }
+    
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
