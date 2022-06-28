@@ -386,14 +386,17 @@
                     <connections>
                         <outlet property="authorEmailLabel" destination="MCw-hD-Stb" id="tyQ-8J-yjd"/>
                         <outlet property="authorImageView" destination="gPv-KH-NIb" id="YPA-Fj-9T3"/>
+                        <outlet property="authorInfoContentView" destination="XVN-bk-ohM" id="ux9-ip-2Yf"/>
                         <outlet property="authorNameLabel" destination="vqa-cA-DIc" id="1Ff-Ze-42c"/>
                         <outlet property="authorPhoneLabel" destination="fNg-GP-4Fc" id="P9v-ES-9tv"/>
                         <outlet property="authorUsernameLabel" destination="gm2-59-A3d" id="5iP-ia-EYM"/>
                         <outlet property="authorWebsiteLabel" destination="jdN-I5-p2I" id="dia-fe-FxW"/>
+                        <outlet property="commentsTitleView" destination="dIW-oZ-tOR" id="dCD-Pp-I7I"/>
                         <outlet property="headerImageView" destination="cWK-57-brK" id="PtF-74-5eY"/>
                         <outlet property="postBodyLabel" destination="z2a-5q-ZA1" id="dS5-QO-pS1"/>
                         <outlet property="postTitleLabel" destination="5TM-7K-xrp" id="S2y-H5-FkT"/>
                         <outlet property="tableView" destination="FTf-qg-KGE" id="ve1-yC-67G"/>
+                        <outlet property="tableviewContainer" destination="tX8-Pt-uR7" id="0RY-Ne-Ozm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1S-n5-YGh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -21,6 +21,9 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var postBodyLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerImageView: UIImageView!
+    @IBOutlet weak var authorInfoContentView: UIView!
+    @IBOutlet weak var commentsTitleView: UIView!
+    @IBOutlet weak var tableviewContainer: UIView!
     
     var viewModel = PostsViewModel()
     var onSetFavorite: ( (PostModel) -> Void )?
@@ -37,10 +40,21 @@ class PostDetailViewController: UIViewController {
     private func bindViewModel() {
         viewModel.parentView = self
         viewModel.getComments {
+            guard self.viewModel.comments != nil else {
+                self.commentsTitleView.removeFromSuperview()
+                self.tableviewContainer.removeFromSuperview()
+                return
+            }
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
             self.tableView.reloadData()
         }
         
         viewModel.getAuthor {
+            guard self.viewModel.author != nil else {
+                self.authorInfoContentView.removeFromSuperview()
+                return
+            }
             self.setupAuthorView()
         }
     }
@@ -48,8 +62,6 @@ class PostDetailViewController: UIViewController {
     private func setupView() {
         
         headerImageView.image = headerImage
-        tableView.delegate = self
-        tableView.dataSource = self
         postTitleLabel.text = viewModel.selectedPost.title ?? ""
         postBodyLabel.text = viewModel.selectedPost.body ?? ""
         setupNavBar()
