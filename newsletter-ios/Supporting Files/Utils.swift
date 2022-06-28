@@ -26,3 +26,27 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
+
+extension UINavigationController {
+    
+    func viewStyle(with color:UIColor) {
+        self.navigationBar.tintColor = .white
+        self.navigationBar.shadowImage = UIImage()
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationBar.titleTextAttributes = textAttributes
+        
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = color
+            appearance.shadowColor = color
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            self.navigationBar.standardAppearance = appearance
+            self.navigationBar.scrollEdgeAppearance = appearance
+        } else {
+            self.navigationBar.barTintColor = color
+        }
+        
+        self.navigationBar.isTranslucent = true
+    }
+    
+}

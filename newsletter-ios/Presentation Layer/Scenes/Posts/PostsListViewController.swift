@@ -26,11 +26,13 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
         let backItem = UIBarButtonItem()
         backItem.title = " "
         navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.viewStyle(with: .systemGreen)
+
     }
     
     private func setupView() {
