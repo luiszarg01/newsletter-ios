@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 // MARK: - PostModel
 struct PostModel: Codable, Equatable {
     var userID, id: Int?
