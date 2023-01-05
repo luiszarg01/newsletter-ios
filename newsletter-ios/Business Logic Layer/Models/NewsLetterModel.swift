@@ -54,10 +54,8 @@ struct UserModel: Codable {
     var company: Company?
 
     var formattedUsername: String {
-        
         guard let username = username else { return "" }
         return "@\(username)"
-
     }
     
 }
