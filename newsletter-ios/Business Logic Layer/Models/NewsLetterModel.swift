@@ -2,7 +2,7 @@
 //  NewsLetterModel.swift
 //  newsletter-ios
 //
-//  Created by dev on 2022-06-25.
+//  Created by Luis Zarza on 2022-06-25.
 //
 
 import Foundation
